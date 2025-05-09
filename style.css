@@ -1,0 +1,23 @@
+['B','I','N','G','O'].forEach(letter => {
+  const h = document.createElement('div');
+  h.className = 'header'; h.textContent = letter;
+  card.appendChild(h);
+});
+
+const shuffled = shuffle([...terms]);
+let idx = 0;
+for (let row = 0; row < 5; row++) {
+  for (let col = 0; col < 5; col++) {
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    if (row === 2 && col === 2) {
+      cell.classList.add('free');
+      cell.textContent = 'FREE';
+    } else {
+      cell.textContent = shuffled[idx++];
+      cell.addEventListener('click', () => cell.classList.toggle('marked'));
+    }
+    card.appendChild(cell);
+  }
+}
+cardsContainer.appendChild(card);
